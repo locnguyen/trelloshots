@@ -1,0 +1,22 @@
+<div class="navbar">
+  <a class="navbar-brand" href="/#/">TrelloShots</a>
+  <!--<button ng-repeat="board in boards" type="button" class="btn btn-default navbar-btn">{{board.name}}</button>-->
+  <ul class="nav navbar-nav nav-pills">
+    <li ng-repeat="board in boards">
+      <button type="button" class="btn btn-primary navbar-btn">{{board.name}}</button>
+    </li>
+  </ul>
+  <!--<p ng-show="isAuthorized" class="navbar-text pull-right">-->
+    <!--Logged in as <a href="{{user.url}}" class="navbar-link" target="_blank">{{user.username}}</a>-->
+  <!--</p>-->
+  <p ng-hide="isAuthorized" class="pull-right">
+    <button type="button" class="btn btn-default navbar-btn btn-info" ng-click="requestAuthorization()">
+      Login
+    </button>
+  </p>
+  <p ng-show="isAuthorized" class="pull-right">
+    <button type="button" class="btn btn-default navbar-btn btn-warning" ng-click="requestDeauthorization()">
+      Logout
+    </button>
+  </p>
+</div>

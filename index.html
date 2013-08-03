@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="trelloShots" ng-controller="trelloShotsController">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrelloShots</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/trelloshots.css">
+</head>
+<body>
+
+  <top-nav></top-nav>
+
+  <div ng-view></div>
+
+  <!-- Vendor libs -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+  <script src="//api.trello.com/1/client.js?key=efdb13875d22825e117d1c6518fa5739"></script>
+
+  <!-- TrelloShots -->
+  <script src="/js/trelloshots.js"></script>
+
+  <script src="/js/controllers/trelloShotsController.js"></script>
+
+  <script src="/js/services/api.js"></script>
+  <script src="/js/services/authService.js"></script>
+  <script src="/js/services/userService.js"></script>
+  <script src="/js/services/boardService.js"></script>
+
+  <script src="/js/directives/topNav.js"></script>
+</body>
+</html>
