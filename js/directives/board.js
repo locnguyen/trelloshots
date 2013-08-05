@@ -1,5 +1,5 @@
 (function() {
-  TrelloShots.app.directive('board', [function() {
+  TrelloShots.app.directive('board', ['boardService', function(boardService) {
     return {
       restrict: 'E',
       scope: {

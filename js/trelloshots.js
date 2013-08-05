@@ -2,7 +2,7 @@ var TrelloShots = TrelloShots || {};
 
 TrelloShots.API_KEY = 'efdb13875d22825e117d1c6518fa5739';
 
-TrelloShots.app = angular.module('trelloShots', []);
+TrelloShots.app = angular.module('trelloShots', ['ngGrid']);
 
 (function() {
   TrelloShots.app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
