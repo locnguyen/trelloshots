@@ -9,11 +9,12 @@ TrelloShots.app = angular.module('trelloShots', []);
     $routeProvider.
       when('/', { templateUrl: '/partials/index.html' }).
       when('/login', { templateUrl: '/partials/login.html' }).
-      when('/dashboard', { templateUrl: '/partials/dashboard.html' });
+      when('/dashboard', { templateUrl: '/partials/dashboard.html' }).
+      when('/board/:boardId', { templateUrl: '/partials/boardDetail.html', controller: 'BoardDetailController' });
 
 
-    // Trello doesn't like this header
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    // Trello doesn't like this header so nuke it
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }]);
 
   TrelloShots.app.run(['$rootScope', '$route', '$location', 'authService', function($rootScope, $route, $location, authService) {
