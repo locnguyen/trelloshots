@@ -4,3 +4,8 @@
 .ts-btn-list {
   margin-top: 5px;
   margin-right: 5px; }
+
+.gridStyle {
+  border: 1px solid #d4d4d4;
+  width: 400px;
+  height: 300px; }

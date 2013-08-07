@@ -1,9 +1,9 @@
 <div>
-  <h1>Board: <span ng-bind="viewState.currentBoard.name"></span></h1>
+  <h1>Board: <span ng-bind="currentBoard.name"></span></h1>
 
   <div>
     <list-selector id="listSelectorModal"></list-selector>
   </div>
 
-
+  <div class="gridStyle" ng-grid="gridOptions"></div>
 </div>

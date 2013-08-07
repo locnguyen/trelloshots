@@ -20,6 +20,7 @@
            var config = boardService.getConfig(board.id);
            if (scope.isSelected(board, list)) {
               config.removeSelectedList(list.id);
+
            }
            else {
              config.addSelectedList(list.id);

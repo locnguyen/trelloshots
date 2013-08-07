@@ -46,11 +46,15 @@
     }
 
     this.removeSelectedList = function(listId) {
-      selectedListIds = _.filter(selectedListIds, function(id) { return listId === id; });
+      selectedListIds = _.filter(selectedListIds, function(id) { return listId !== id; });
     }
 
     this.isSelected = function(listId) {
       return _.contains(selectedListIds, listId);
+    }
+
+    this.selectedListIds = function() {
+      return selectedListIds;
     }
   }
 }());
