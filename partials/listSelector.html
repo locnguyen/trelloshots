@@ -8,8 +8,8 @@
           <h4 class="modal-title">Configure Lists</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-default btn-mini ts-btn-list" ng-class="{'btn-success': list.isSelected}"
-                  ng-repeat="list in viewState.currentBoard.lists" ng-click="toggleList(list)">
+          <button type="button" class="btn btn-default btn-mini ts-btn-list" ng-class="{'btn-success': isSelected(viewState.currentBoard, list)}"
+                  ng-repeat="list in viewState.currentBoard.lists" ng-click="toggleList(viewState.currentBoard, list)">
             <span ng-bind="list.name"></span>
           </button>
         </div>

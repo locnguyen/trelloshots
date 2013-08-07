@@ -12,9 +12,18 @@
            }
          });
 
-         scope.toggleList = function(list) {
-           list.isSelected = !list.isSelected;
-           list.isSelected ? viewStateService.selectList(list.id) : viewStateService.deselectList(list.id);
+         scope.toggleList = function(board, list) {
+           var config = boardService.getConfig(board.id);
+           if (scope.isSelected(board, list)) {
+              config.removeSelectedList(list.id);
+           }
+           else {
+             config.addSelectedList(list.id);
+           }
+         }
+
+         scope.isSelected = function(board, list) {
+           return boardService.getConfig(board.id).isSelected(list.id);
          }
        }
      }

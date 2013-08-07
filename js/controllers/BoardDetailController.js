@@ -1,9 +1,11 @@
 (function() {
   TrelloShots.app.controller('BoardDetailController', [
-      '$scope', '$routeParams', 'boardService', function($scope, $routeParams, boardService) {
+      '$scope', '$routeParams', 'boardService', 'viewStateService', function($scope, $routeParams, boardService, viewStateService) {
 
-    boardService.get($routeParams.boardId).then(function(data) {
-      $scope.viewState.currentBoard = data;
+    boardService.get($routeParams.boardId).then(function(board) {
+
+      $scope.viewState.currentBoard = board;
+      viewStateService.currentBoard = board
     });
   }]);
 }());
