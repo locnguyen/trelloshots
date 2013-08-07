@@ -10,7 +10,7 @@
 
     <div class="nav-collapse collapse navbar-responsive-collapse container">
       <ul class="nav navbar-nav">
-        <li ng-repeat="board in boards" ng-class="{'active': viewState.currentBoard.id == board.id}">
+        <li ng-repeat="board in boards" ng-class="{'active': currentBoard.id == board.id}">
           <a ng-click="showBoard(board, $event)">
             <span ng-bind="board.name"></span>
           </a>

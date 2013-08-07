@@ -1,5 +1,5 @@
 (function() {
-  TrelloShots.app.directive('topNav', ['$location', function($location) {
+  TrelloShots.app.directive('topNav', ['$location', 'viewStateService', function($location, viewStateService) {
     return {
       restrict: 'E',
       templateUrl: '/partials/topNav.html',
@@ -8,6 +8,11 @@
           $(e.target).data('loading-text', 'Loading...');
           $location.path('/board/' + board.id);
         }
+
+        scope.$watch(
+          function() { return viewStateService.currentBoard; },
+          function(newBoard) { scope.currentBoard = newBoard; }
+        );
       }
     }
   }]);

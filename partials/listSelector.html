@@ -1,6 +1,6 @@
 <div>
-  <a data-toggle="modal" href="#list-selector-{{viewState.currentBoard.id}}" class="btn btn-primary btn-lg ts-list-selector-btn">Select Lists</a>
-  <div class="modal fade" id="list-selector-{{viewState.currentBoard.id}}">
+  <a data-toggle="modal" href="#list-selector-{{board.id}}" class="btn btn-primary btn-lg ts-list-selector-btn">Select Lists</a>
+  <div class="modal fade" id="list-selector-{{board.id}}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,8 +8,8 @@
           <h4 class="modal-title">Configure Lists</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-default btn-mini ts-btn-list" ng-class="{'btn-success': isSelected(viewState.currentBoard, list)}"
-                  ng-repeat="list in viewState.currentBoard.lists" ng-click="toggleList(viewState.currentBoard, list)">
+          <button type="button" class="btn btn-default btn-mini ts-btn-list" ng-class="{'btn-success': isSelected(board, list)}"
+                  ng-repeat="list in board.lists" ng-click="toggleList(board, list)">
             <span ng-bind="list.name"></span>
           </button>
         </div>

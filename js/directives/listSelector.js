@@ -5,11 +5,15 @@
        replace: false,
        templateUrl: '/partials/listSelector.html',
        link: function(scope, el, attrs) {
-         scope.$watch('viewState.currentBoard', function(board) {
-           if (board) {
-             el.find('#list-selector-' + board.id).modal({ show: false });
-             boardService.lists(board.id).then(function(lists) { board.lists = lists; });
-           }
+         scope.$watch(
+           function() {
+             return viewStateService.currentBoard;
+           }, function(board) {
+             if (board) {
+               scope.board = board;
+               el.find('#list-selector-' + scope.board.id).modal({ show: false });
+               boardService.lists(scope.board.id).then(function(lists) { scope.board.lists = lists; });
+             }
          });
 
          scope.toggleList = function(board, list) {
