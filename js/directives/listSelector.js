@@ -18,7 +18,7 @@
 
          scope.toggleList = function(board, list) {
            var config = boardService.getConfig(board.id);
-           if (scope.isSelected(board, list)) {
+           if (scope.isSelectedList(board, list)) {
               config.removeSelectedList(list.id);
 
            }
@@ -27,8 +27,8 @@
            }
          }
 
-         scope.isSelected = function(board, list) {
-           return boardService.getConfig(board.id).isSelected(list.id);
+         scope.isSelectedList = function(board, list) {
+           return boardService.getConfig(board.id).isSelectedList(list.id);
          }
        }
      }

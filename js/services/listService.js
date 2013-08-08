@@ -13,7 +13,6 @@
 
         return $q.all(requests).then(function(response) {
           var cards = _.flatten(_.pluck(response, 'data'));
-          console.log(cards);
           return cards;
         });
       }
