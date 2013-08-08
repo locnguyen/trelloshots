@@ -12,3 +12,7 @@
   width: 90%;
   height: 500px;
 }
+
+.ngTopPanel, .ngHeaderContainer, .ngViewport {
+  width: auto !important;
+}
