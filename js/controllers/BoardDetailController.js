@@ -5,10 +5,8 @@
 
       boardService.get($routeParams.boardId).then(function(board) {
         viewStateService.currentBoard = board;
-
         $scope.boardConfig = boardService.getConfig(board.id);
       });
-
 
       $scope.$watch(
         function() { return $scope.boardConfig && _.size($scope.boardConfig.selectedListIds()); },
@@ -18,13 +16,28 @@
           }
           else {
             listService.cards($scope.boardConfig.selectedListIds()).then(function(cards) {
-              $scope.cards = _.map(cards, function(c) { return  _.pick(c, 'name', 'desc')});
+              $scope.cards = cards;
             });
           }
         }
       );
 
-      $scope.gridOptions = { data: 'cards' };
+      $scope.$watch(
+        function() { return $scope.boardConfig && _.size($scope.boardConfig.selectedColumns()); },
+        function() {
+          if ($scope.boardConfig) {
+            var selectedColumns = $scope.boardConfig.selectedColumns();
+            $scope.columnDefinitions = _.filter(listService.cardColumnDefinitions(), function(c) {
+              return _.contains(selectedColumns, c.field);
+            });
+          }
+          else {
+            $scope.columnDefinitions = [];
+          }
+        }
+      );
+
+      $scope.gridOptions = { data: 'cards', columnDefs: 'columnDefinitions' };
 
   }]);
 }());

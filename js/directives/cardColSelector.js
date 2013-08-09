@@ -1,11 +1,12 @@
 (function() {
-  TrelloShots.app.directive('cardColSelector', ['boardService', 'viewStateService', function(boardService, viewStateService) {
+  TrelloShots.app.directive('cardColSelector', ['boardService', 'listService', 'viewStateService',
+      function(boardService, listService, viewStateService) {
+
     return {
       restrict: 'EA',
       replace: false,
       templateUrl: '/partials/cardColSelector.html',
       link: function(scope, el) {
-
         scope.$watch(
           function() { return viewStateService.currentBoard; },
           function(board) {
@@ -26,38 +27,7 @@
           }
         }
 
-        scope.columns = [
-          {
-            displayName: 'Name',
-            field: 'name',
-            isSelected: false
-          },
-          {
-            displayName: 'Description',
-            field: 'desc',
-            isSelected: false
-          },
-          {
-            displayName: 'Last Updated',
-            field: 'dateLastActivity',
-            isSelected: false
-          },
-          {
-            displayName: 'Due Date',
-            field: 'due',
-            isSelected: false
-          },
-          {
-            displayName: 'Labels',
-            field: 'labels',
-            isSelected: false
-          },
-          {
-            displayName: 'Closed',
-            field: 'closed',
-            isSelected: false
-          },
-        ];
+        scope.columns = listService.cardColumnDefinitions();
       }
     }
   }]);

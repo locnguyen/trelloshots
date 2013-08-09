@@ -62,6 +62,7 @@
 
     this.addSelectedColumn = function(column) {
       selectedColumns.push(column);
+      selectedColumns = _.compact(_.uniq(selectedColumns));
     }
 
     this.removeSelectedColumn = function(column) {
@@ -70,6 +71,10 @@
 
     this.isSelectedColumn = function(column) {
       return _.contains(selectedColumns, column);
+    }
+
+    this.selectedColumns = function() {
+      return selectedColumns;
     }
   }
 }());

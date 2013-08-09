@@ -11,8 +11,18 @@
   border: 1px solid rgb(212,212,212);
   width: 90%;
   height: 500px;
+  margin: 0 auto;
 }
 
 .ngTopPanel, .ngHeaderContainer, .ngViewport {
   width: auto !important;
+}
+
+.board-config {
+  list-selector, card-col-selector {
+    display: inline;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 15px;
+  }
 }

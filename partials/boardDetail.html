@@ -3,13 +3,11 @@
     Board: <span ng-bind="currentBoard.name"></span>
   </h1>
 
-  <div>
-    <list-selector id="listSelectorModal"></list-selector>
+  <div class="board-config btn-toolbar">
+    <div class="btn-group">
+      <list-selector></list-selector>
+      <card-col-selector></card-col-selector>
+    </div>
   </div>
-
-  <div>
-    <card-col-selector></card-col-selector>
-  </div>
-
   <div class="gridStyle" ng-grid="gridOptions"></div>
 </div>
