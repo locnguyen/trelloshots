@@ -9,5 +9,11 @@
       <card-col-selector></card-col-selector>
     </div>
   </div>
-  <div class="gridStyle" ng-grid="gridOptions"></div>
+  <div class="gridStyle" ng-grid="gridOptions" ng-show="selectedListIds.length > 0 && selectedColumns.length > 0"></div>
+
+
+  <div class="alert">
+    <p ng-show="selectedListIds.length == 0">Please select at least one list.</p>
+    <p ng-show="selectedColumns.length == 0">Please select at least one column.</p>
+  </div>
 </div>

@@ -15,7 +15,8 @@
             $scope.cards = [];
           }
           else {
-            listService.cards($scope.boardConfig.selectedListIds()).then(function(cards) {
+            $scope.selectedListIds = $scope.boardConfig.selectedListIds();
+            listService.cards($scope.selectedListIds).then(function(cards) {
               $scope.cards = cards;
             });
           }
@@ -26,9 +27,9 @@
         function() { return $scope.boardConfig && _.size($scope.boardConfig.selectedColumns()); },
         function() {
           if ($scope.boardConfig) {
-            var selectedColumns = $scope.boardConfig.selectedColumns();
+            $scope.selectedColumns = $scope.boardConfig.selectedColumns();
             $scope.columnDefinitions = _.filter(listService.cardColumnDefinitions(), function(c) {
-              return _.contains(selectedColumns, c.field);
+              return _.contains($scope.selectedColumns, c.field);
             });
           }
           else {
@@ -38,6 +39,5 @@
       );
 
       $scope.gridOptions = { data: 'cards', columnDefs: 'columnDefinitions' };
-
   }]);
 }());
