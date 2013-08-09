@@ -28,6 +28,11 @@
             field: 'desc'
           },
           {
+            displayName: 'Members',
+            field: 'idMembers',
+            cellTemplate: '/partials/cardMembers.html'
+          },
+          {
             displayName: 'Last Updated',
             field: 'dateLastActivity'
           },

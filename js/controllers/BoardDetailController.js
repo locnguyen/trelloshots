@@ -39,5 +39,19 @@
       );
 
       $scope.gridOptions = { data: 'cards', columnDefs: 'columnDefinitions' };
+
+      $scope.member = function(idOrUsername) {
+        return _.find($scope.currentBoard.members, function(m) {
+          return m.id === idOrUsername || m.username === idOrUsername;
+        })
+      }
+
+      $scope.pluckCardUsernames = function(idsOrUsernames) {
+        var members = _.map(idsOrUsernames, function(id) {
+           return $scope.member(id);
+        });
+
+        return _.pluck(members, 'username').join(',');
+      }
   }]);
 }());

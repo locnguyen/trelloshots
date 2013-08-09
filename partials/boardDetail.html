@@ -1,7 +1,7 @@
 <div>
-  <h1>
+  <h2>
     Board: <span ng-bind="currentBoard.name"></span>
-  </h1>
+  </h2>
 
   <div class="board-config btn-toolbar">
     <div class="btn-group">
@@ -9,8 +9,8 @@
       <card-col-selector></card-col-selector>
     </div>
   </div>
-  <div class="gridStyle" ng-grid="gridOptions" ng-show="selectedListIds.length > 0 && selectedColumns.length > 0"></div>
 
+  <div class="gridStyle" ng-grid="gridOptions" ng-show="selectedListIds.length > 0 && selectedColumns.length > 0"></div>
 
   <div class="alert">
     <p ng-show="selectedListIds.length == 0">Please select at least one list.</p>
