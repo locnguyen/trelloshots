@@ -1,5 +1,9 @@
 <div>
-  <button type="button" data-toggle="modal" href="#list-selector-{{board.id}}" class="btn btn-primary btn-xs ts-list-selector-btn">Lists</button>
+  <button tooltip type="button" data-toggle="modal" href="#list-selector-{{board.id}}" id="list-selector-btn-{{board.id}}"
+          class="btn btn-primary" data-original-title="{{selectedListNames}}">
+    <span data-toggle="tooltip" title="{{selectedListNames}}">Lists</span>
+  </button>
+
   <div class="modal fade" id="list-selector-{{board.id}}">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -8,7 +12,7 @@
           <h4 class="modal-title">Configure Lists</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-default btn-mini ts-btn-list" ng-class="{'btn-success': isSelectedList(board, list)}"
+          <button type="button" class="btn btn-default btn-small ts-btn-list" ng-class="{'btn-success': isSelectedList(board, list)}"
                   ng-repeat="list in board.lists" ng-click="toggleList(board, list)">
             <span ng-bind="list.name"></span>
           </button>

@@ -1,4 +1,4 @@
-<div>
+<div class="row">
   <h2>
     Board: <span ng-bind="currentBoard.name"></span>
   </h2>
@@ -12,7 +12,7 @@
 
   <div class="gridStyle" ng-grid="gridOptions" ng-show="selectedListIds.length > 0 && selectedColumns.length > 0"></div>
 
-  <div class="alert">
+  <div class="bs-callout bs-callout-warning" ng-show="selectedListIds.length == 0 || selectedColumns.length == 0">
     <p ng-show="selectedListIds.length == 0">Please select at least one list.</p>
     <p ng-show="selectedColumns.length == 0">Please select at least one column.</p>
   </div>

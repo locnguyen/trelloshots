@@ -21,7 +21,8 @@
         return [
           {
             displayName: 'Name',
-            field: 'name'
+            field: 'name',
+            cellTemplate: '<div class="ngCellText"><a ng-cell-text href="{{row.getProperty(\'url\')}}" ng-bind="row.getProperty(col.field)" target="_blank"></a></div>'
           },
           {
             displayName: 'Description',
@@ -30,15 +31,22 @@
           {
             displayName: 'Members',
             field: 'idMembers',
-            cellTemplate: '/partials/cardMembers.html'
+            cellTemplate: '<div class="ngCellText"><span ng-cell-text ng-bind="pluckCardUsernames(row.getProperty(col.field))"></span></div>'
+          },
+          {
+            displayName: 'List',
+            field: 'idList',
+            cellTemplate: '<div class="ngCellText"><span  ng-cell-text ng-bind="pluckCardListName(row.getProperty(col.field))"></span></div>'
           },
           {
             displayName: 'Last Updated',
-            field: 'dateLastActivity'
+            field: 'dateLastActivity',
+            cellTemplate: '<div class="ngCellText"><span ng-cell-text ng-bind="row.getProperty(col.field) | date:\'M/d/yy h:mm a\'"></span></div>'
           },
           {
             displayName: 'Due Date',
-            field: 'due'
+            field: 'due',
+            cellTemplate: '<div class="ngCellText"><span ng-cell-text ng-bind="row.getProperty(col.field) | date:\'M/d/yy\'"></span></div>'
           },
           {
             displayName: 'Labels',

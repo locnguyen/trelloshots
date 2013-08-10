@@ -51,7 +51,11 @@
            return $scope.member(id);
         });
 
-        return _.pluck(members, 'username').join(',');
+        return _.pluck(members, 'username').join(', ');
+      }
+
+      $scope.pluckCardListName = function(id) {
+         return _.find($scope.currentBoard.lists, function(l) { return l.id === id; }).name;
       }
   }]);
 }());

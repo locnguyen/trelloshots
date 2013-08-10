@@ -25,6 +25,12 @@
            else {
              config.addSelectedList(list.id);
            }
+
+           var selectedLists = _.filter(scope.board.lists, function(l) {
+              return scope.isSelectedList(scope.board, l);
+           });
+
+           scope.selectedListNames = _.pluck(selectedLists, 'name').join(', ');
          }
 
          scope.isSelectedList = function(board, list) {
