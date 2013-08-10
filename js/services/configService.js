@@ -1,33 +1,27 @@
 (function() {
-  TrelloShots.app.factory('boardService', ['$http', 'api', 'configService', function($http, api, configService) {
+  TrelloShots.app.factory('configService', [function() {
+    var boardConfigs = [];
+
     return {
-      all: function() {
-        var fields = '&fields=name,url,shortLink,dateLastActivity';
-        var url = api.url('https://trello.com/1/members/my/boards/pinned') + fields;
-        return $http.get(url).then(function(response) { return response.data; });
-      },
+      board: function(boardId) {
+        var config = _.find(boardConfigs, function(c) { return c.id === boardId; });
 
-      get: function(boardId) {
-        var fields = '&fields=name,desc,url,labelNames&members=all';
-        var url = api.url('https://trello.com/1/boards/' + boardId) + fields;
-        return $http.get(url).then(function(response) {
-          configService.board(response.data);
-          return response.data;
-        });
-      },
+        if (!config) {
+          config = new BoardConfig(boardId);
+          boardConfigs.push(config);
+          return config;
+        }
 
-      lists: function(boardId) {
-        var url = api.url('https://trello.com/1/boards/' + boardId + '/lists');
-        return $http.get(url).then(function(response) { return response.data; });
+        return config;
       }
     }
   }]);
 
-  function BoardConfig(board) {
+  function BoardConfig(boardId) {
     var selectedListIds = [],
-        selectedColumns = [];
+      selectedColumns = [];
 
-    this.id = board.id;
+    this.id = boardId;
 
     this.addSelectedList = function(listId) {
       selectedListIds.push(listId)

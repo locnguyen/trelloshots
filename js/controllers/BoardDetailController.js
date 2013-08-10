@@ -1,11 +1,11 @@
 (function() {
   TrelloShots.app.controller('BoardDetailController', [
-      '$scope', '$routeParams', 'boardService', 'viewStateService', 'listService',
-    function($scope, $routeParams, boardService, viewStateService, listService) {
+      '$scope', '$routeParams', 'boardService', 'viewStateService', 'listService', 'configService',
+    function($scope, $routeParams, boardService, viewStateService, listService, configService) {
 
       boardService.get($routeParams.boardId).then(function(board) {
         viewStateService.currentBoard = board;
-        $scope.boardConfig = boardService.getConfig(board.id);
+        $scope.boardConfig = configService.board(board.id);
       });
 
       $scope.$watch(

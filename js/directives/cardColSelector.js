@@ -1,6 +1,6 @@
 (function() {
-  TrelloShots.app.directive('cardColSelector', ['boardService', 'listService', 'viewStateService',
-      function(boardService, listService, viewStateService) {
+  TrelloShots.app.directive('cardColSelector', ['boardService', 'listService', 'viewStateService', 'configService',
+      function(boardService, listService, viewStateService, configService) {
 
     return {
       restrict: 'EA',
@@ -15,13 +15,13 @@
         );
 
         scope.toggleColumn = function(column) {
-          var config = boardService.getConfig(scope.board.id);
+          var config = configService.board(scope.board.id);
           scope.isColumnSelected(column) ? config.removeSelectedColumn(column) : config.addSelectedColumn(column);
         }
 
         scope.isColumnSelected = function(column) {
           if (scope.board) {
-            return boardService.getConfig(scope.board.id).isSelectedColumn(column);
+            return configService.board(scope.board.id).isSelectedColumn(column);
           } else {
             return false;
           }

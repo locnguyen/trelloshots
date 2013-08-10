@@ -1,5 +1,6 @@
 (function() {
-   TrelloShots.app.directive('listSelector', ['boardService', 'viewStateService', function(boardService, viewStateService) {
+   TrelloShots.app.directive('listSelector', ['boardService', 'viewStateService', 'configService',
+     function(boardService, viewStateService, configService) {
      return {
        restrict: 'EA',
        replace: false,
@@ -17,7 +18,7 @@
          });
 
          scope.toggleList = function(board, list) {
-           var config = boardService.getConfig(board.id);
+           var config = configService.board(board.id);
            if (scope.isSelectedList(board, list)) {
               config.removeSelectedList(list.id);
 
@@ -34,7 +35,11 @@
          }
 
          scope.isSelectedList = function(board, list) {
-           return boardService.getConfig(board.id).isSelectedList(list.id);
+           var config = configService.board(board.id);
+           if (config)
+              return configService.board(board.id).isSelectedList(list.id);
+           else
+              return false;
          }
        }
      }
