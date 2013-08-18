@@ -4,7 +4,7 @@
     <span data-toggle="tooltip" title="{{selectedListNames}}">Lists</span>
   </button>
 
-  <div class="modal fade" id="list-selector-{{board.id}}">
+  <div class="modal fade" id="list-selector-{{board.id}}" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -18,7 +18,7 @@
           </button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal">Close</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

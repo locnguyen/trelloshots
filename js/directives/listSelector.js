@@ -41,6 +41,13 @@
            else
               return false;
          }
+
+         /* Added to handle clicking the close button in a modal in Bootstrap 3 RC2. After clicking a button the close
+          * button doesn't close anymore.
+          */
+         scope.closeModal = function() {
+           $('#col-selector-' + scope.board.id).modal('hide');
+         }
        }
      }
    }]);

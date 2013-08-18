@@ -2,7 +2,7 @@
   <button type="button" data-toggle="modal" href="#col-selector-{{board.id}}"
           class="btn btn-primary ts-list-selector-btn">Columns</button>
 
-  <div class="modal fade" id="col-selector-{{board.id}}">
+  <div class="modal fade" id="col-selector-{{board.id}}" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,13 +10,13 @@
           <h4 class="modal-title">Configure Card Columns</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-default btn-small ts-btn-list" ng-repeat="c in columns"
+          <a class="btn btn-default btn-small ts-btn-list" ng-repeat="c in columns"
                   ng-click="toggleColumn(c.field)" ng-class="{'btn-success': isColumnSelected(c.field)}">
             <span ng-bind="c.displayName"></span>
-          </button>
+          </a>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">Close</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
