@@ -16,7 +16,7 @@
 .ngTopPanel, .ngHeaderContainer, .ngViewport {
   width: auto !important; }
 
-.board-config list-selector, .board-config card-col-selector {
+.board-config list-selector, .board-config card-col-selector, .board-config filter-selector {
   display: inline;
   float: left;
   margin-right: 5px;

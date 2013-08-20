@@ -1,0 +1,30 @@
+<div>
+  <button type="button" data-toggle="modal" href="#filter-selector-{{board.id}}"
+          class="btn btn-primary ts-list-selector-btn">Filters
+  </button>
+
+  <div class="modal fade" id="filter-selector-{{board.id}}" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="panel-group" id="filter-collapse-{{board.id}}">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#filter-collapse-{{board.id}}"
+                   href="#collapseOne">
+                  Last Updated Date
+                </a>
+              </h4>
+            </div> <!-- /panel-heading -->
+            <div id="collapseOne" class="panel-collapse collapse">
+              <div class="panel-body">
+                Last Updated Date editor
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
