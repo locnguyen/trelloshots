@@ -20,8 +20,6 @@
           return config;
         }
 
-        $location.search('selectedListIds', config.selectedListIds);
-        $location.search('selectedColumns', config.selectedColumns);
         return config;
       },
 
