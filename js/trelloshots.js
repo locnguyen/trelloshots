@@ -34,7 +34,7 @@ TrelloShots.app = angular.module('trelloShots', ['ngGrid', 'firebase']);
           // do nothing, already going to login page
         }
         else {
-          var nextRoute = next.templateUrl.slice(next.templateUrl.lastIndexOf('/'), next.templateUrl.indexOf('.'));
+          var nextRoute = $location.url();
           $location.search('redirectTo', nextRoute);
           $location.path('/login');
         }
