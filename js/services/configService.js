@@ -20,24 +20,19 @@
           return config;
         }
 
+        $location.search('selectedListIds', config.selectedListIds);
+        $location.search('selectedColumns', config.selectedColumns);
         return config;
       },
 
       selectedListIdsFromParam: function () {
         if (!$routeParams.selectedListIds) return [];
-
-        return _.reject($routeParams.selectedListIds.split(','), function (id) {
-          return id === '';
-        });
+        return $routeParams.selectedListIds;
       },
 
       selectedColumnsFromParam: function () {
         if (!$routeParams.selectedColumns) return [];
-
-        return _.reject($routeParams.selectedColumns.split(','), function (id) {
-          return id === '';
-        });
-        ;
+        return $routeParams.selectedColumns;
       }
     }
   }]);
