@@ -1,60 +1,100 @@
-(function() {
-  TrelloShots.app.factory('configService', [function() {
+(function () {
+  TrelloShots.app.factory('configService', ['$location', '$rootScope', '$routeParams', function ($location, $rootScope, $routeParams) {
     var boardConfigs = [];
 
     return {
-      board: function(boardId) {
-        var config = _.find(boardConfigs, function(c) { return c.id === boardId; });
+      board: function (boardId) {
+        var config = _.find(boardConfigs, function (c) {
+          return c.id === boardId;
+        });
 
         if (!config) {
-          config = new BoardConfig(boardId);
+          config = new BoardConfig({
+            boardId: boardId,
+            selectedListIds: this.selectedListIdsFromParam(),
+            selectedColumns: this.selectedColumnsFromParam(),
+            $location: $location,
+            $rootScope: $rootScope
+          });
           boardConfigs.push(config);
           return config;
         }
 
         return config;
+      },
+
+      selectedListIdsFromParam: function () {
+        if (!$routeParams.selectedListIds) return [];
+
+        return _.reject($routeParams.selectedListIds.split(','), function (id) {
+          return id === '';
+        });
+      },
+
+      selectedColumnsFromParam: function () {
+        if (!$routeParams.selectedColumns) return [];
+
+        return _.reject($routeParams.selectedColumns.split(','), function (id) {
+          return id === '';
+        });
+        ;
       }
     }
   }]);
 
-  function BoardConfig(boardId) {
-    var selectedListIds = [],
-      selectedColumns = [];
+  function BoardConfig(params) {
+    var $location = params.$location, $rootScope = params.$rootScope, that = this;
 
-    this.id = boardId;
+    this.selectedListIds = params.selectedListIds || [];
+    this.selectedColumns = params.selectedColumns || [];
+    this.id = params.boardId;
 
-    this.addSelectedList = function(listId) {
-      selectedListIds.push(listId)
-      selectedListIds = _.uniq(selectedListIds);
+    $rootScope.$watch(
+      function () {
+        return that.selectedListIds.length;
+      },
+      function () {
+        $location.search('selectedListIds', that.selectedListIds);
+      }
+    );
+
+    $rootScope.$watch(
+      function () {
+        return that.selectedColumns.length;
+      },
+      function () {
+        $location.search('selectedColumns', that.selectedColumns);
+      }
+    );
+
+    this.addSelectedList = function (listId) {
+      this.selectedListIds.push(listId)
+      this.selectedListIds = _.uniq(this.selectedListIds);
     }
 
-    this.removeSelectedList = function(listId) {
-      selectedListIds = _.filter(selectedListIds, function(id) { return listId !== id; });
+    this.removeSelectedList = function (listId) {
+      this.selectedListIds = _.filter(this.selectedListIds, function (id) {
+        return listId !== id;
+      });
     }
 
-    this.isSelectedList = function(listId) {
-      return _.contains(selectedListIds, listId);
+    this.isSelectedList = function (listId) {
+      return _.contains(this.selectedListIds, listId);
     }
 
-    this.selectedListIds = function() {
-      return selectedListIds;
+    this.addSelectedColumn = function (column) {
+      this.selectedColumns.push(column);
+      this.selectedColumns = _.compact(_.uniq(this.selectedColumns));
     }
 
-    this.addSelectedColumn = function(column) {
-      selectedColumns.push(column);
-      selectedColumns = _.compact(_.uniq(selectedColumns));
+    this.removeSelectedColumn = function (column) {
+      this.selectedColumns = _.filter(this.selectedColumns, function (c) {
+        return c !== column;
+      });
     }
 
-    this.removeSelectedColumn = function(column) {
-      selectedColumns = _.filter(selectedColumns, function(c) { return c !== column; });
-    }
-
-    this.isSelectedColumn = function(column) {
-      return _.contains(selectedColumns, column);
-    }
-
-    this.selectedColumns = function() {
-      return selectedColumns;
+    this.isSelectedColumn = function (column) {
+      return _.contains(this.selectedColumns, column);
     }
   }
 }());
