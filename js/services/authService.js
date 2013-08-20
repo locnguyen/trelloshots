@@ -14,11 +14,11 @@
           type: 'popup',
           name: 'TrelloShots',
           success: function() {
+            $rootScope.$apply();
             var redirect = $routeParams.redirectTo;
             if (redirect && redirect !== '') {
               $location.search('redirectTo', null);
               $location.path(redirect);
-              $rootScope.$apply();
             }
             else {
               $location.path('/');
