@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse navbar-responsive-collapse ">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="board in boards" ng-class="{'active': currentBoard.id == board.id}">
-                    <a ng-click="showBoard(board, $event)">
+                    <a ng-click="showBoard(board, $event)" class="ts-btn-show-board">
                         <span ng-bind="board.name"></span>
                     </a>
                 </li>
