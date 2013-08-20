@@ -5,7 +5,8 @@
       templateUrl: '/partials/topNav.html',
       link: function(scope, el) {
         scope.showBoard = function(board, e) {
-          $(e.target).data('loading-text', 'Loading...');
+          $location.search('selectedListIds', null);
+          $location.search('selectedColumns', null);
           $location.path('/board/' + board.id);
         }
 
