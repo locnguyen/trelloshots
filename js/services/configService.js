@@ -25,12 +25,12 @@
 
       selectedListIdsFromParam: function () {
         if (!$routeParams.selectedListIds) return [];
-        return $routeParams.selectedListIds;
+        return $routeParams.selectedListIds.split(',');
       },
 
       selectedColumnsFromParam: function () {
         if (!$routeParams.selectedColumns) return [];
-        return $routeParams.selectedColumns;
+        return $routeParams.selectedColumns.split(',');
       }
     }
   }]);

@@ -3,9 +3,6 @@
         '$scope', '$location', '$routeParams', 'boardService', 'viewStateService', 'listService', 'configService',
         function ($scope, $location, $routeParams, boardService, viewStateService, listService, configService) {
 
-            $location.search('selectedListIds', null);
-            $location.search('selectedColumns', null);
-
             boardService.get($routeParams.boardId).then(function (board) {
                 viewStateService.currentBoard = board;
                 $scope.boardConfig = configService.board(board.id);
