@@ -6,22 +6,31 @@
   <div class="modal fade" id="filter-selector-{{board.id}}" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="panel-group" id="filter-collapse-{{board.id}}">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Filters</h4>
+        </div>
+
+
+        <div ng-repeat="filter in filters" class="panel-group" id="filter-collapse-{{board.id}}-{{filter.name}}">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#filter-collapse-{{board.id}}"
-                   href="#collapseOne">
-                  Last Updated Date
-                </a>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#filter-collapse-{{board.id}}-{{filter.name}}"
+                   href="#collapse-{{$index}}">{{filter.desc}}</a>
               </h4>
             </div> <!-- /panel-heading -->
-            <div id="collapseOne" class="panel-collapse collapse">
+            <div id="collapse-{{$index}}" class="panel-collapse collapse">
               <div class="panel-body">
-                Last Updated Date editor
+                <input type="text" name="lastUpdatedDate-{{board.id}}" ui-date>
               </div>
             </div>
           </div>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
