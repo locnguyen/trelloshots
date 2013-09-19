@@ -4,7 +4,7 @@
             templateUrl: '/partials/filterSelector.html',
             restrict: 'EA',
             controller: function ($scope) {
-                $scope.filters = [lastUpdated, dueDate];
+                $scope.filters = [lastUpdated, dueDate, voteCount];
             },
             link: function (scope, el, attrs) {
                 el.find('.collapse').collapse();
@@ -28,10 +28,10 @@
             this.date = hash.date;
         }
     }
-
     DateFilter.prototype = new Filter();
 
-    var DateRangeFilter = function(hash) {
+
+    var DateRangeFilter = function (hash) {
         this.editor = 'date-range-editor';
 
         if (hash) {
@@ -40,8 +40,22 @@
             this.end = hash.end;
         }
     }
-
     DateRangeFilter.prototype = new Filter();
+
+
+    var NumberRangeFilter = function (hash) {
+        this.editor = 'slider-editor';
+        this.isRange = true;
+
+        if (hash) {
+            Filter.call(this, hash);
+            this.low = hash.low;
+            this.high = hash.high;
+            this.rangeMin = hash.rangeMin;
+            this.rangeMax = hash.rangeMax;
+        }
+    }
+    NumberRangeFilter.prototype = new Filter();
 
 
     var lastUpdated = new DateRangeFilter({
@@ -65,6 +79,16 @@
             dueDate.setHours(0, 0, 0, 0);
             date.setHours(0, 0, 0, 0);
             return dueDate === date;
+        }
+    });
+
+    var voteCount = new NumberRangeFilter({
+        name: 'voteCount',
+        desc: 'Vote Count',
+        rangeMin: 0,
+        rangeMax: 100,
+        iterator: function (card, low, high) {
+            return card.badges.votes > low && card.badges.votes < high;
         }
     });
 }());
